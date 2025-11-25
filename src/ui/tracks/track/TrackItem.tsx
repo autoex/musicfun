@@ -1,4 +1,5 @@
-
+import clsx from 'clsx';
+import styles from './TrackItem.module.css'
 export type Stream =  {
 url: string
 }
@@ -14,7 +15,7 @@ export type Props = {
 };
 const TrackItem = ({ isSelected, track, trackClickHandler }:Props) => {
   return (
-    <li style={{border: isSelected ? '1px solid red' : ''}} onClick={()=>trackClickHandler(track.track_id)}>
+    <li className={clsx({[styles.selectedItem]:isSelected})} onClick={()=>trackClickHandler(track.track_id)}>
         {track.orig_filename}
         <br />
       <audio
