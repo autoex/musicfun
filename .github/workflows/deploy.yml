@@ -2,7 +2,12 @@ name: Deploy Musicfun
 
 on:
   push:
-    branches: [ "deezer" ]   # можно заменить на master
+    branches: [ "deezer" ]
+    
+permissions:
+  contents: write
+  pages: write
+  id-token: write   # можно заменить на master
 
 jobs:
  deploy:
