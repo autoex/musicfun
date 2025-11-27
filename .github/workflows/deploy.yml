@@ -5,31 +5,18 @@ on:
     branches: [ "deezer" ]   # можно заменить на master
 
 jobs:
-  build-and-deploy:
+ deploy:
     runs-on: ubuntu-latest
 
-    steps:
-      # 1. Checkout
-      - name: Checkout
-        uses: actions/checkout@v4
-
-      # 2. Install Node.js
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
+    steps:          
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
         with:
-          node-version: 18
+          node-version: 20
 
-      # 3. Install dependencies
-      - name: Install dependencies
-        run: npm install
-
-      # 4. Build React-app
-      - name: Build
-        run: npm run build
-
-      # 5. Deploy to GitHub Pages
-      - name: Deploy to GitHub Pages
-        uses: JamesIves/github-pages-deploy-action@v4
+      - run: npm install
+      - run: npm run build
+      - uses: actions/upload-pages-artifact@v3          
         with:
-          branch: gh-pages                
-          folder: build                  
+         path: dist 
+      - uses: actions/deploy-pages@v4        
